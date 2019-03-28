@@ -15,6 +15,7 @@ public class SessionsListener implements HttpSessionListener {
 
     @Override
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
+        System.out.println("session destroyed");
         decrementCount(httpSessionEvent);
     }
 
@@ -27,6 +28,7 @@ public class SessionsListener implements HttpSessionListener {
     }
 
     private void changeCount(HttpSessionEvent httpSessionEvent, int value) {
+        System.out.println("session event");
         ServletContext context = httpSessionEvent.getSession().getServletContext();
         int current = getCount(httpSessionEvent);
         current += value;
@@ -43,7 +45,7 @@ public class SessionsListener implements HttpSessionListener {
     }
 
     private void storeCount(ServletContext context, int count) {
-        Object o = context.getAttribute("count");
+        System.out.println("session count : " + count);
         context.setAttribute("count", count);
     }
 }

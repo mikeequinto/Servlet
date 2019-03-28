@@ -11,7 +11,7 @@
     <title>Session & Attribut Listener</title>
 </head>
 <body>
-    <form action="${page-context.request.contextPath}+/stockage" method="post">
+    <form action="${pageContext.request.contextPath}/stockage" method="post">
         Object : <input type="radio" name="type" value="object">
         Date : <input type="radio" name="type" value="date">
         Array : <input type="radio" name="type" value="array">

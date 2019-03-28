@@ -11,9 +11,9 @@
     <title>Nombre de Sessions</title>
 </head>
 <body>
-    <h1>Nombre de sessions : <% request.getAttribute("count"); %></h1>
+    <h1>Nombre de sessions : <%= request.getAttribute("count") %></h1>
 
-    <form method="post" action="${pageContext.request.contextPath}/invalidate">
+    <form method="post" action="${pageContext.request.contextPath}/sessions">
         Delete session<input type="radio" name="action" value="delete">
         <input type="submit" value="Go">
     </form>

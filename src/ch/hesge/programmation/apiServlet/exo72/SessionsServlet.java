@@ -1,5 +1,7 @@
 package ch.hesge.programmation.apiServlet.exo72;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +16,11 @@ public class SessionsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        HttpSession session = req.getSession(false);
+        if (session == null){
+            req.getSession(true);
+        }
+
         int count = getSessionCount(req);
         req.setAttribute("count", count);
         req.getRequestDispatcher("/sessions.jsp")
@@ -21,29 +28,21 @@ public class SessionsServlet extends HttpServlet {
     }
 
     private int getSessionCount(HttpServletRequest request){
-
-        return 0;
+        int o = (Integer)request.getServletContext().getAttribute("count");
+        return o;
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String action = req.getParameter("action");
+        HttpSession session = req.getSession();
 
-        HttpSession session = req.getSession(false);
-
-        switch (action){
-            case "create":
-                if (session == null){
-                    session = req.getSession(true);
-                }
-                break;
-            case "delete":
-                session.invalidate();
-                break;
+        if(action != null && action.equals("delete")){
+            System.out.println("delete session");
+            session.invalidate();
         }
-
-        resp.sendRedirect(req.getContextPath() + "/sessions.jsp");
+        resp.sendRedirect("/sessions");
     }
 }
 

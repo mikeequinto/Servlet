@@ -1,6 +1,7 @@
 package ch.hesge.programmation.apiServlet.exo71;
 
 import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
@@ -8,9 +9,9 @@ import javax.servlet.http.HttpSessionListener;
 public class SessionListener implements HttpSessionListener {
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
-        /*System.out.println("new session created");
+        System.out.println("new session created");
         HttpSession session = httpSessionEvent.getSession();
-        System.out.println("session id : " + session.getId());*/
+        System.out.println("session id : " + session.getId());
     }
 
     @Override

@@ -11,15 +11,6 @@ public class UserDataListener implements HttpSessionAttributeListener {
     @Override
     public void attributeAdded(HttpSessionBindingEvent httpSessionBindingEvent) {
         System.out.println("new user data!");
-
-        /*if((httpSessionBindingEvent.getClass()).isArray()){
-            System.out.println("is array");
-        }else{
-            System.out.println("attribut : "+httpSessionBindingEvent.getName());
-        }
-
-        System.out.println("value : "+httpSessionBindingEvent.getValue());*/
-
         log(httpSessionBindingEvent);
     }
 

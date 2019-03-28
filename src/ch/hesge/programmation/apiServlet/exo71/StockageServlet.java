@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +18,8 @@ public class StockageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/WEB-INF/test.jsp");
+        req.getRequestDispatcher("/WEB-INF/test.jsp")
+                .forward(req,resp);
     }
 
     @Override
@@ -26,24 +29,55 @@ public class StockageServlet extends HttpServlet {
 
         if(session == null){
             //Create session
-            session = req.getSession(true);
+            req.getSession(true);
         }
 
-        if(session.getId() != null){
-            Object object = new Object();
-            Date date = new Date();
-            //Array array = {new Object(), new Object(), new Date()};
-            List list = Arrays.asList(new Object(), new Object(), new Date());
+        String type = req.getParameter("type");
 
-            session.setAttribute("object", object);
-            session.setAttribute("date", date);
-            session.setAttribute("list", list);
-
-            System.out.println(session.getAttribute("date"));
-
+        if(type != null){
+            switch (type){
+                case "object" :
+                    storeObject(session);
+                    break;
+                case "date" :
+                    storeDate(session);
+                    break;
+                case "array":
+                    storeArray(session);
+                    break;
+                case "list" :
+                    storeList(session);
+                    break;
+                default:
+                    System.out.println("wrong type!");
+            }
+        }else{
+            System.out.println("select a type");
         }
 
+        resp.sendRedirect(req.getContextPath() + "/stockage");
 
     }
 
+    private void storeObject(HttpSession session){
+        session.setAttribute("object", new Object());
+    }
+
+    private void storeDate(HttpSession session){
+        session.setAttribute("date", new Date());
+    }
+
+    private void storeArray(HttpSession session){
+        System.out.println("hi");
+        ArrayList array = new ArrayList();
+        array.add(new Object());
+        array.add(new Object());
+        array.add(new Date());
+        session.setAttribute("array", array);
+    }
+
+    private void storeList(HttpSession session){
+        List list = Arrays.asList(new Object(), new Object(), new Date());
+        session.setAttribute("list", list);
+    }
 }
