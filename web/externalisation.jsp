@@ -11,13 +11,13 @@
 <fmt:setBundle basename="ch.hesge.programmation.labels" var="msg" />
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="en">
+<html lang="$[request.locale]">
 <head>
     <meta charset="UTF-8">
-    <title>Création de Personne</title>
+    <title></title>
 </head>
 <body>
-<h1>Création de Personne</h1>
+<h1><fmt:message key="title" bundle="${msg}"/></h1>
 <form>
     <label for="firstName"><fmt:message key="first-name" bundle="${msg}"/> :</label>
     <input type="text" id="firstName" name="firstName"/>
