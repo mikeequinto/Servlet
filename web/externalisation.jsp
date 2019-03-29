@@ -7,14 +7,14 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="${request.locale}" />
+<fmt:setLocale value="${sessionScope.locale}" />
 <fmt:setBundle basename="ch.hesge.programmation.labels" var="msg" />
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="$[request.locale]">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title><fmt:message key="title" bundle="${msg}" /> </title>
 </head>
 <body>
 <h1><fmt:message key="title" bundle="${msg}"/></h1>

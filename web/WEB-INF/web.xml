@@ -38,4 +38,8 @@
         <error-code>500</error-code>
         <location>/WEB-INF/error-500.jsp</location>
     </error-page>
+    <!-- catch all -->
+    <error-page>
+        <location>/WEB-INF/errors.jsp</location>
+    </error-page>
 </web-app>

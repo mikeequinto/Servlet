@@ -1,4 +1,4 @@
-package ch.hesge.programmation.apiServlet.exo81;
+package ch.hesge.programmation.apiServlet.exo82;
 
 
 import javax.servlet.ServletException;
